@@ -1,22 +1,12 @@
 {
-	"extends": "./node_modules/@appnest/web-config/tsconfig.json",
-	"compilerOptions": {
-		"outDir": "dist",
-		"declaration": true,
-		"target": "es2017",
-		"importHelpers": true,
-		"lib": [
-			"es2015.promise",
-			"dom",
-			"es7",
-			"es6",
-			"es2017",
-			"es2017.object",
-			"es2015.proxy",
-			"esnext"
-		]
-	},
-	"include": [
-		"src/lib/**/*"
-	]
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": true,
+    "target": "ESNext",
+    "importHelpers": true,
+    "lib": ["ESNext", "DOM"]
+  },
+  "include": ["src/lib/**/*"]
 }
