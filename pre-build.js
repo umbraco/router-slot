@@ -5,17 +5,17 @@ const outLib = "dist";
 
 // TODO: Run "tsc -p tsconfig.build.json" from this script and rename it to "build".
 
-async function preBuild () {
+async function preBuild() {
 	await cleanLib();
 	copySync("./package.json", `./${outLib}/package.json`);
 	copySync("./README.md", `./${outLib}/README.md`);
 }
 
-function cleanLib () {
-	return new Promise(res => rimraf(outLib, res));
+function cleanLib() {
+	return rimraf(outLib);
 }
 
-function copySync (src, dest) {
+function copySync(src, dest) {
 	fs.copySync(path.resolve(__dirname, src), path.resolve(__dirname, dest));
 }
 
