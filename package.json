@@ -1,71 +1,75 @@
 {
-	"name": "router-slot",
-	"version": "1.5.5",
-	"description": "A powerful web component router",
-	"license": "MIT",
-	"author": "Andreas Mehlsen",
-	"types": "index.d.ts",
-	"module": "index.js",
-	"main": "index.js",
-	"bugs": {
-		"url": "https://github.com/andreasbm/router-slot/issues"
-	},
-	"homepage": "https://github.com/andreasbm/router-slot#readme",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/andreasbm/router-slot.git"
-	},
-	"keywords": [
-		"webapp",
-		"custom",
-		"elements",
-		"powerful",
-		"routes",
-		"routing",
-		"route",
-		"router",
-		"slot",
-		"fragments",
-		"vanilla",
-		"web",
-		"component",
-		"router",
-		"navigation",
-		"zero dependencies"
-	],
-	"scripts": {
-		"b:demo:dev": "rollup -c rollup.config.ts --environment NODE_ENV:dev",
-		"b:demo:prod": "rollup -c rollup.config.ts --environment NODE_ENV:prod",
-		"s:dev": "rollup -c rollup.config.ts --watch --environment NODE_ENV:dev",
-		"s:prod": "rollup -c rollup.config.ts --watch --environment NODE_ENV:prod",
-		"s": "npm run s:dev",
-		"test": "karma start",
-		"ncu": "ncu -u -a && npm update && npm install",
-		"b:lib": "node pre-build.js && tsc -p tsconfig.build.json && npm run custom-elements-json",
-		"readme": "node node_modules/.bin/readme generate",
-		"postversion": "npm run readme && npm run b:lib",
-		"publish:patch": "np patch --contents=dist --no-cleanup",
-		"publish:minor": "np minor --contents=dist --no-cleanup",
-		"publish:major": "np major --contents=dist --no-cleanup",
-		"custom-elements-json": "npx wca analyze src/lib --format json --outFile dist/custom-elements.json"
-	},
-	"devDependencies": {
-		"@appnest/readme": "^1.2.7",
-		"@appnest/web-config": "^0.5.4",
-		"lit": "^2.2.3",
-		"node-typescript-compiler": "^2.4.0",
-		"weightless": "0.0.37"
-	},
-	"contributors": [
-		{
-			"name": "Andreas Mehlsen",
-			"url": "https://twitter.com/andreasmehlsen",
-			"img": "https://avatars1.githubusercontent.com/u/6267397?s=460&v=4"
-		},
-		{
-			"name": "You?",
-			"img": "https://joeschmoe.io/api/v1/random",
-			"url": "https://github.com/andreasbm/router-slot/blob/master/CONTRIBUTING.md"
-		}
-	]
+  "name": "router-slot",
+  "version": "1.6.0",
+  "description": "A powerful web component router",
+  "license": "MIT",
+  "author": "Andreas Mehlsen",
+  "types": "index.d.ts",
+  "module": "index.js",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/andreasbm/router-slot/issues"
+  },
+  "homepage": "https://github.com/andreasbm/router-slot#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreasbm/router-slot.git"
+  },
+  "keywords": [
+    "webapp",
+    "custom",
+    "elements",
+    "powerful",
+    "routes",
+    "routing",
+    "route",
+    "router",
+    "slot",
+    "fragments",
+    "vanilla",
+    "web",
+    "component",
+    "router",
+    "navigation",
+    "zero dependencies"
+  ],
+  "scripts": {
+    "b:demo:dev": "vite build src/demo",
+    "b:demo:prod": "vite build src/demo --mode production",
+    "s:dev": "vite src/demo",
+    "s:prod": "vite src/demo --mode production",
+    "s": "npm run s:dev",
+    "test": "karma start",
+    "ncu": "ncu -u -a && npm update && npm install",
+    "b:lib": "node pre-build.js && tsc -p tsconfig.build.json && npm run custom-elements-json",
+    "readme": "node node_modules/.bin/readme generate",
+    "postversion": "npm run readme && npm run b:lib",
+    "publish:patch": "np patch --contents=dist --no-cleanup",
+    "publish:minor": "np minor --contents=dist --no-cleanup",
+    "publish:major": "np major --contents=dist --no-cleanup",
+    "custom-elements-json": "npx wca analyze src/lib --format json --outFile dist/custom-elements.json"
+  },
+  "devDependencies": {
+    "fs-extra": "^11.1.0",
+    "lit": "^2.6.1",
+    "rimraf": "^4.1.3",
+    "rollup": "^3.18.0",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.4",
+    "web-component-analyzer": "^2.0.0-next.4",
+    "weightless": "^0.0.37"
+  },
+  "contributors": [
+    {
+      "name": "Andreas Mehlsen",
+      "url": "https://twitter.com/andreasmehlsen",
+      "img": "https://avatars1.githubusercontent.com/u/6267397?s=460&v=4"
+    },
+    {
+      "name": "You?",
+      "img": "https://joeschmoe.io/api/v1/random",
+      "url": "https://github.com/andreasbm/router-slot/blob/master/CONTRIBUTING.md"
+    }
+  ]
 }
