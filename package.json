@@ -39,7 +39,8 @@
     "s:dev": "vite src/demo",
     "s:prod": "vite src/demo --mode production",
     "s": "npm run s:dev",
-    "test": "karma start",
+    "test": "wtr src/test/**/*.test.ts --node-resolve",
+    "test:watch": "wtr src/test/**/*.test.ts --node-resolve --watch",
     "ncu": "ncu -u -a && npm update && npm install",
     "b:lib": "node pre-build.js && tsc -p tsconfig.build.json && npm run custom-elements-json",
     "readme": "node node_modules/.bin/readme generate",
@@ -50,6 +51,10 @@
     "custom-elements-json": "npx wca analyze src/lib --format json --outFile dist/custom-elements.json"
   },
   "devDependencies": {
+    "@open-wc/testing": "^3.1.7",
+    "@web/dev-server-esbuild": "^0.3.5",
+    "@web/test-runner": "^0.15.2",
+    "@web/test-runner-playwright": "^0.9.0",
     "fs-extra": "^11.1.1",
     "lit": "^2.7.1",
     "rimraf": "^4.4.1",
