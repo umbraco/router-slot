@@ -1,73 +1,107 @@
-import { css, LitElement, PropertyValues, TemplateResult, html } from "lit";
-import "weightless/nav";
-import { basePath, GLOBAL_ROUTER_EVENTS_TARGET, IRoute, isPathActive, PageComponent, query, queryString, IRoutingInfo } from "../../../lib";
-import { sharedStyles } from "../styles";
-import "weightless/button";
+import { css, LitElement, PropertyValues, TemplateResult, html } from 'lit';
+import 'weightless/nav';
+import {
+  basePath,
+  GLOBAL_ROUTER_EVENTS_TARGET,
+  IRoute,
+  isPathActive,
+  PageComponent,
+  query,
+  queryString,
+  IRoutingInfo,
+} from '../../../lib';
+import { sharedStyles } from '../styles';
+import 'weightless/button';
 
 const ROUTES: IRoute[] = [
-	{
-		path: "secret",
-		component: () => import("./secret/secret")
-	},
-	{
-		path: "user/:user/dashboard/:dashId",
-		component: () => import("./user/user"),
-		setup: (page: PageComponent, info: IRoutingInfo) => {
-			//page.userId = info.match.params.userId;
-			console.log({page, info});
-		}
-	},
-	{
-		path: "**",
-		redirectTo: "secret",
-		preserveQuery: true
-	}
+  {
+    path: 'secret',
+    component: () => import('./secret/secret'),
+  },
+  {
+    path: 'user/:user/dashboard/:dashId',
+    component: () => import('./user/user'),
+    setup: (page: PageComponent, info: IRoutingInfo) => {
+      //page.userId = info.match.params.userId;
+      console.log({ page, info });
+    },
+  },
+  {
+    path: '**',
+    redirectTo: 'secret',
+    preserveQuery: true,
+  },
 ];
 
 export default class HomeComponent extends LitElement {
-	static styles = [sharedStyles, css`
-		#child {
-		    margin: 70px 0 0 0;
-            padding: 30px;
-		}
-		
-		a, button, wl-button {
-			margin: 0 12px 0 0;
-		}
-	`];
+  static styles = [
+    sharedStyles,
+    css`
+      #child {
+        margin: 70px 0 0 0;
+        padding: 30px;
+      }
 
-	firstUpdated (changedProperties: PropertyValues) {
-		super.firstUpdated(changedProperties);
+      a,
+      button,
+      wl-button {
+        margin: 0 12px 0 0;
+      }
+    `,
+  ];
 
-		console.log({
-			query: query(),
-			queryString: queryString()
-		});
+  firstUpdated(changedProperties: PropertyValues) {
+    super.firstUpdated(changedProperties);
 
-		GLOBAL_ROUTER_EVENTS_TARGET.addEventListener("changestate", () => this.requestUpdate());
-	}
+    console.log({
+      query: query(),
+      queryString: queryString(),
+    });
 
-	private logout () {
-		localStorage.clear();
-		history.replaceState(null, "", "/login");
-	}
+    GLOBAL_ROUTER_EVENTS_TARGET.addEventListener('changestate', () =>
+      this.requestUpdate()
+    );
+  }
 
-	render (): TemplateResult {
-		return html`
-			<wl-nav fixed shadow>
-			   <h1 slot="title">router-slot</h1>
-			   <div slot="right">
-			        <a href="home/secret/code${queryString()}" ?data-active="${isPathActive(`${basePath()}home/secret`)}">Go to SecretComponent</a>
-					<a href="home/user/@andreasbm/dashboard/123${queryString()}" ?data-active="${isPathActive(`${basePath()}home/user/@andreasbm/dashboard/123`)}">Go to UserComponent</a>
-					<wl-button @click="${() => this.logout()}" inverted flat>Logout</wl-button>
-			   </div>
-			</wl-nav>
-			<div id="child">
-				<router-slot .routes="${ROUTES}"></router-slot>
-			</div>
-		`;
-	}
+  private logout() {
+    localStorage.clear();
+    history.replaceState(null, '', '/login');
+  }
 
+  render(): TemplateResult {
+    return html`
+      <wl-nav fixed shadow>
+        <h1 slot="title">router-slot</h1>
+        <div slot="right">
+          <a
+            href="home/secret/code${queryString()}"
+            ?data-active="${isPathActive(`${basePath()}home/secret`)}"
+            >Go to SecretComponent</a
+          >
+          <a
+            href="home/user/@andreasbm/dashboard/123${queryString()}"
+            ?data-active="${isPathActive(
+              `${basePath()}home/user/@andreasbm/dashboard/123`
+            )}"
+            >Go to UserComponent</a
+          >
+          <a
+            href="home/user/@andreasbm/dashboard/123?foo=bar"
+            ?data-active="${isPathActive(
+              `${basePath()}home/user/@andreasbm/dashboard/123`
+            )}"
+            >Go to UserComponent (with query)</a
+          >
+          <wl-button @click="${() => this.logout()}" inverted flat
+            >Logout</wl-button
+          >
+        </div>
+      </wl-nav>
+      <div id="child">
+        <router-slot .routes="${ROUTES}"></router-slot>
+      </div>
+    `;
+  }
 }
 
-window.customElements.define("home-component", HomeComponent);
+window.customElements.define('home-component', HomeComponent);

@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<base href="/">
-	<!--<base href="/router-slot/">-->
-	<title>router-slot</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/" />
+    <!--<base href="/router-slot/">-->
+    <title>router-slot</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
 
-	<style>
-		#link {
-			position: absolute;
-			right: 12px;
-			bottom: 12px;
-		}
+    <style>
+      #link {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+      }
+    </style>
 
-		html {
-		}
-	</style>
+    <script type="module" src="app.ts"></script>
+  </head>
+  <body>
+    <!-- Routing -->
+    <router-slot></router-slot>
 
-	<script type="module" src="app.ts"></script>
-</head>
-<body>
+    <a id="link" target="_blank" href="https://github.com/umbraco/router-slot">
+      Github
+    </a>
 
-<!-- Routing -->
-<router-slot></router-slot>
-
-<a id="link" href="https://github.com/andreasbm/router-slot">Github</a>
-
-<script crossorigin src="https://polyfill.app/api/polyfill?features=es,web-components"></script>
-
-</body>
+    <script
+      crossorigin
+      src="https://polyfill.app/api/polyfill?features=es,web-components"
+    ></script>
+  </body>
 </html>
