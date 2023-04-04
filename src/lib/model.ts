@@ -22,10 +22,10 @@ export type CustomResolver<D = any, P = any> = ((info: IRoutingInfo<D>) => boole
 export type Guard<D = any, P = any> = ((info: IRoutingInfo<D, P>) => boolean | Promise<boolean>);
 export type Cancel = (() => boolean);
 
-export type PageComponent = HTMLElement;
+export type PageComponent = HTMLElement | undefined;
 export type ModuleResolver = Promise<{default: any; /*PageComponent*/}>;
 export type Class<T extends PageComponent = PageComponent> = {new (...args: any[]): T;};
-export type Component = Class | ModuleResolver | PageComponent | (() => Class) | (() => PageComponent) | (() => ModuleResolver);
+export type Component = Class | ModuleResolver | PageComponent | (() => Class) | (() => PromiseLike<Class>) | (() => PageComponent) | (() => PromiseLike<PageComponent>) | (() => ModuleResolver) | (() => PromiseLike<ModuleResolver>);
 export type Setup<D = any> = ((component: PageComponent, info: IRoutingInfo<D>) => void);
 
 export type RouterTree<D = any, P = any> = {slot: IRouterSlot<D, P>} & {child?: RouterTree} | null | undefined;
