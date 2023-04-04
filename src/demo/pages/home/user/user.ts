@@ -30,6 +30,8 @@ export default class UserComponent extends LitElement {
   firstUpdated(changedProperties: PropertyValues) {
     super.firstUpdated(changedProperties);
 
+    window.addEventListener('changestate', () => this.requestUpdate());
+
     const $routerSlot =
       this.shadowRoot!.querySelector<IRouterSlot>(ROUTER_SLOT_TAG_NAME)!;
     $routerSlot.add([

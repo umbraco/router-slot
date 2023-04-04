@@ -67,27 +67,30 @@ export default class HomeComponent extends LitElement {
         <h1 slot="title">router-slot</h1>
         <div slot="right">
           <a
-            href="home/secret/code${queryString()}"
+            href="home/secret/code"
             ?data-active="${isPathActive(`${basePath()}home/secret`)}"
-            >Go to SecretComponent</a
           >
+            Go to SecretComponent
+          </a>
           <a
-            href="home/user/@andreasbm/dashboard/123${queryString()}"
+            href="home/user/@andreasbm/dashboard/123"
             ?data-active="${isPathActive(
               `${basePath()}home/user/@andreasbm/dashboard/123`
             )}"
-            >Go to UserComponent</a
           >
+            Go to UserComponent
+          </a>
           <a
             href="home/user/@andreasbm/dashboard/123?foo=bar"
             ?data-active="${isPathActive(
               `${basePath()}home/user/@andreasbm/dashboard/123`
             )}"
-            >Go to UserComponent (with query)</a
           >
-          <wl-button @click="${() => this.logout()}" inverted flat
-            >Logout</wl-button
-          >
+            Go to UserComponent (with query)
+          </a>
+          <wl-button @click="${() => this.logout()}" inverted flat>
+            Logout
+          </wl-button>
         </div>
       </wl-nav>
       <div id="child">
