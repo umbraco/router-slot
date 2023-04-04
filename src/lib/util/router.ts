@@ -132,7 +132,7 @@ export async function resolvePageComponent (route: IComponentRoute, info: IRouti
 	if (!(moduleClassOrPage instanceof HTMLElement)) {
 		component = new (moduleClassOrPage.default ? moduleClassOrPage.default : moduleClassOrPage)() as PageComponent;
 	} else {
-		component = cmp as PageComponent;
+		component = moduleClassOrPage as PageComponent;
 	}
 
 	// Setup the component using the callback.
