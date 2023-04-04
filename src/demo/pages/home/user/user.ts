@@ -3,7 +3,7 @@ import { ROUTER_SLOT_TAG_NAME } from '../../../../lib/config';
 import { IRouterSlot, Params } from '../../../../lib/model';
 import { queryParentRouterSlot } from '../../../../lib/util/shadow';
 import { sharedStyles } from '../../styles';
-import { query, queryString } from '../../../../lib';
+import { query, queryString } from '../../../../lib/util';
 
 export default class UserComponent extends LitElement {
   static styles = [sharedStyles];
