@@ -180,12 +180,17 @@ export class RouterSlot<D = any, P = any>
 	 * @param routes
 	 * @param navigate
 	 */
-	add(
-		routes: IRoute<D>[],
-		navigate: boolean = this.isRoot && this.isConnected
-	): void {
+	add(routes: IRoute<D>[], navigate?: boolean): void {
 		// Add the routes to the array
 		this._routes.push(...routes);
+
+		if (navigate === undefined) {
+			// If navigate is not determined, then we will check if we have a route match. If not then we will re-render.
+			navigate = this._routeMatch === null;
+		}
+
+		// Navigate fallback:
+		navigate ??= this.isRoot && this.isConnected;
 
 		// Register that the path has changed so the correct route can be loaded.
 		if (navigate) {
