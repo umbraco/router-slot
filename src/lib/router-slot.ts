@@ -130,6 +130,11 @@ export class RouterSlot<D = any, P = any>
 	constructor() {
 		super();
 
+		this.addEventListener("router-slot:capture-parent", (e: any) => {
+			e.stopPropagation();
+			e.detail.parent = this;
+		});
+
 		this.render = this.render.bind(this);
 
 		// Attach the template
@@ -143,7 +148,16 @@ export class RouterSlot<D = any, P = any>
 	connectedCallback() {
 		// Do not query a parent if the parent has been set from the outside.
 		if (!this._lockParent) {
-			this._setParent(this.queryParentRouterSlot());
+			// TODO: fire event to find parent router-slot.
+			const captureParentEvent = new CustomEvent("router-slot:capture-parent", {
+				composed: true,
+				bubbles: true,
+				detail: { parent: null },
+			});
+			this.dispatchEvent(captureParentEvent);
+			if (captureParentEvent.detail.parent) {
+				this._setParent(captureParentEvent.detail.parent);
+			}
 		}
 		if (this.parent && this.parent.match !== null && this.match === null) {
 			requestAnimationFrame(() => {
